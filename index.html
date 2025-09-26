@@ -2,28 +2,29 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>متجر ديسكورد شوب</title>
+  <title>🛒 متجر ديسكورد</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>🛒 متجر ديسكورد شوب</h1>
-    <button id="addProductBtn">➕ إضافة منتج</button>
-  </header>
+  <h1>🛒 متجر ديسكورد</h1>
 
-  <main id="productList">
-    <!-- المنتجات ستظهر هنا -->
-  </main>
+  <form id="productForm">
+    <input type="text" id="name" placeholder="اسم المنتج" required>
+    <input type="text" id="image" placeholder="رابط الصورة" required>
+    <input type="text" id="seller" placeholder="يوزر ديسكورد" required>
+    <button type="submit">➕ إضافة منتج</button>
+  </form>
 
-  <!-- نافذة إضافة منتج -->
-  <div id="productForm" class="modal hidden">
-    <div class="modal-content">
-      <h2>إضافة منتج جديد</h2>
-      <input type="text" id="productName" placeholder="اسم المنتج">
-      <input type="number" id="productPrice" placeholder="السعر">
-      <input type="text" id="productImage" placeholder="رابط صورة المنتج">
-      <button id="saveProduct">حفظ المنتج</button>
-      <button id="closeForm">إلغاء</button>
+  <div id="products"></div>
+
+  <!-- نافذة تواصل -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span id="closePopup">&times;</span>
+      <h2>💬 تواصل مع البائع</h2>
+      <p id="sellerInfo"></p>
+      <button onclick="closePopup()">إغلاق</button>
     </div>
   </div>
 
