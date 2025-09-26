@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>متجر ديسكورد شوب</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🛒 متجر ديسكورد شوب</h1>
+    <button id="addProductBtn">➕ إضافة منتج</button>
+  </header>
+
+  <main id="productList">
+    <!-- المنتجات ستظهر هنا -->
+  </main>
+
+  <!-- نافذة إضافة منتج -->
+  <div id="productForm" class="modal hidden">
+    <div class="modal-content">
+      <h2>إضافة منتج جديد</h2>
+      <input type="text" id="productName" placeholder="اسم المنتج">
+      <input type="number" id="productPrice" placeholder="السعر">
+      <input type="text" id="productImage" placeholder="رابط صورة المنتج">
+      <button id="saveProduct">حفظ المنتج</button>
+      <button id="closeForm">إلغاء</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
