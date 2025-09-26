@@ -1,66 +1,110 @@
 body {
+  font-family: 'Cairo', sans-serif;
+  text-align: center;
+  background: #f9f9f9;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #1e1e2f;
-  color: #fff;
+  padding: 0;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #2b2b3d;
+h1 {
+  animation: fadeIn 1.5s ease-in-out;
+  margin: 20px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+form {
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 200px;
 }
 
 button {
-  background: #5865f2;
-  border: none;
   padding: 10px 20px;
+  border: none;
+  background: #5865F2;
   color: #fff;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }
+
 button:hover {
-  background: #4752c4;
+  background: #404EED;
 }
 
-#productList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+#products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 20px;
 }
 
 .product {
-  background: #2f3136;
-  padding: 15px;
+  border: 1px solid #ddd;
   border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  margin: 10px;
+  padding: 15px;
+  width: 220px;
+  background: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: zoomIn 0.6s ease-in-out;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .product img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.modal {
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Popup */
+.popup {
+  display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.6);
-  display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.4s ease;
 }
-.modal-content {
-  background: #2f3136;
+
+.popup-content {
+  background: #fff;
   padding: 20px;
   border-radius: 12px;
   width: 300px;
   text-align: center;
+  animation: slideUp 0.4s ease;
 }
-.hidden {
-  display: none;
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+#closePopup {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
 }
