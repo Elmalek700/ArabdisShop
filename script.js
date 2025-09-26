@@ -1,42 +1,51 @@
-const addProductBtn = document.getElementById("addProductBtn");
-const productForm = document.getElementById("productForm");
-const closeForm = document.getElementById("closeForm");
-const saveProduct = document.getElementById("saveProduct");
-const productList = document.getElementById("productList");
+// جلب المنتجات من السيرفر
+async function loadProducts() {
+  const res = await fetch("/products");
+  const products = await res.json();
+  const container = document.getElementById("products");
+  container.innerHTML = "";
 
-let products = [];
-
-addProductBtn.addEventListener("click", () => {
-  productForm.classList.remove("hidden");
-});
-
-closeForm.addEventListener("click", () => {
-  productForm.classList.add("hidden");
-});
-
-saveProduct.addEventListener("click", () => {
-  const name = document.getElementById("productName").value;
-  const price = document.getElementById("productPrice").value;
-  const image = document.getElementById("productImage").value;
-
-  if (name && price && image) {
-    const product = { name, price, image };
-    products.push(product);
-    renderProducts();
-    productForm.classList.add("hidden");
-  }
-});
-
-function renderProducts() {
-  productList.innerHTML = "";
   products.forEach(p => {
     const div = document.createElement("div");
-    div.classList.add("product");
+    div.className = "product";
     div.innerHTML = `
       <img src="${p.image}" alt="${p.name}">
       <h3>${p.name}</h3>
-      <p>${p.price} $</p>
+      <p>👤 ${p.seller}</p>
+      <button onclick="buyProduct('${p.seller}')">🛒 شراء</button>
     `;
-    productList.appendChild(div);
+    container.appendChild(div);
   });
 }
+
+// إضافة منتج
+document.getElementById("productForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const image = document.getElementById("image").value;
+  const seller = document.getElementById("seller").value;
+
+  await fetch("/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, image, seller })
+  });
+
+  e.target.reset();
+  loadProducts();
+});
+
+// عند الشراء → فتح Popup
+function buyProduct(seller) {
+  document.getElementById("sellerInfo").innerText = `تواصل مع ${seller} على ديسكورد`;
+  document.getElementById("popup").style.display = "flex";
+}
+
+// غلق الـ Popup
+document.getElementById("closePopup").onclick = closePopup;
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+// تحميل المنتجات أول ما يفتح الموقع
+loadProducts();
