@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000;
 
 // اتصال ب MongoDB
-mongoose.connect("mongodb+srv://Ahmed:Ahmed3mk@ahmed.imrxblk.mongodb.net/?retryWrites=true&w=majority&appName=Ahmed")
+mongoose.connect("mongodb+srv://mongodb+srv://SYRAX:Team123@cluster0.zhmgnea.mongodb.net/?retryWrites=true&w=majority")
   .then(() => console.log("✅ متصل بقاعدة البيانات"))
   .catch(err => console.error("❌ خطأ بقاعدة البيانات:", err));
 
